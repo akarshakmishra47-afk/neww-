@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Student Opportunity Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Injected via components.js -->
+        <div id="sidebar-container"></div>
+        
+        <div class="main-content">
+            <!-- Injected via components.js -->
+            <div id="header-container"></div>
+            
+            <div class="page-content" style="max-width: 800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; height: calc(100vh - 120px);">
+                <div class="section-header" style="margin-top: 1rem;">
+                    <h1 class="section-title" style="font-size: 1.5rem; color: var(--brand-primary);">Career Copilot</h1>
+                </div>
+                
+                <div class="card" style="flex: 1; display: flex; flex-direction: column; background: var(--card-bg); overflow: hidden; padding: 0;">
+                    
+                    <div id="chat-container" style="flex: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem;">
+                        <!-- AI Message -->
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--brand-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-shrink: 0;">AI</div>
+                            <div style="background: rgba(23, 63, 53, 0.05); padding: 1rem 1.5rem; border-radius: 2px 16px 16px 16px; color: var(--text-primary); max-width: 80%;">
+                                Hi there! I'm your career copilot. Based on your profile, you're looking for AI/ML opportunities. How can I help you today?
+                            </div>
+                        </div>
+
+                        <!-- User Message -->
+                        <div style="display: flex; gap: 1rem; align-items: flex-start; flex-direction: row-reverse;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--border-color); color: var(--text-primary); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-shrink: 0;">YOU</div>
+                            <div style="background: var(--brand-primary); color: #FFFDF9; padding: 1rem 1.5rem; border-radius: 16px 2px 16px 16px; max-width: 80%;">
+                                Which opportunity should I apply for this week?
+                            </div>
+                        </div>
+
+                        <!-- AI Message -->
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--brand-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-shrink: 0;">AI</div>
+                            <div style="background: rgba(23, 63, 53, 0.05); padding: 1rem 1.5rem; border-radius: 2px 16px 16px 16px; color: var(--text-primary); max-width: 80%;">
+                                <p style="margin-bottom: 1rem; margin-top: 0;">Based on your profile, I'd start with these highly-matched options:</p>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.875rem;">
+                                    <div style="display: flex; gap: 0.5rem;"><strong>94%</strong> <span>AI Research Internship (Microsoft)</span></div>
+                                    <div style="display: flex; gap: 0.5rem;"><strong>89%</strong> <span>ML Engineering Internship (Google)</span></div>
+                                </div>
+                                <p style="margin-bottom: 0;">I recommend focusing on the Microsoft internship since it doesn't require Deep Learning, which is currently a skill gap for you.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="chat-form" style="padding: 1.5rem; border-top: 1px solid var(--border-color); background: var(--card-bg);">
+                        <div style="display: flex; gap: 1rem;">
+                            <input type="text" id="chat-input" class="form-control" placeholder="Ask your copilot anything..." style="flex: 1; border-radius: 9999px;" required>
+                            <button type="submit" class="btn btn-primary" style="border-radius: 9999px; padding: 0.75rem 1.5rem;">Send</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.components.renderSidebar('sidebar-container');
+            
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const chatContainer = document.getElementById('chat-container');
+
+            function appendMessage(sender, text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.style.display = 'flex';
+                msgDiv.style.gap = '1rem';
+                msgDiv.style.alignItems = 'flex-start';
+                
+                if (sender === 'YOU') {
+                    msgDiv.style.flexDirection = 'row-reverse';
+                    msgDiv.innerHTML = `
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--border-color); color: var(--text-primary); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-shrink: 0;">YOU</div>
+                        <div style="background: var(--brand-primary); color: #FFFDF9; padding: 1rem 1.5rem; border-radius: 16px 2px 16px 16px; max-width: 80%;">
+                            ${text}
+                        </div>
+                    `;
+                } else {
+                    msgDiv.innerHTML = `
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--brand-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-shrink: 0;">AI</div>
+                        <div style="background: rgba(23, 63, 53, 0.05); padding: 1rem 1.5rem; border-radius: 2px 16px 16px 16px; color: var(--text-primary); max-width: 80%;">
+                            ${text}
+                        </div>
+                    `;
+                }
+                
+                chatContainer.appendChild(msgDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const text = chatInput.value.trim();
+                if (!text) return;
+                
+                appendMessage('YOU', text);
+                chatInput.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const responses = [
+                        "That's a great question! I recommend focusing on updating your skills profile first so I can give you a better answer.",
+                        "Based on current trends, that aligns well with your AI/ML Engineer goal.",
+                        "I can help you build a personalized roadmap for that. Would you like to see it?",
+                        "Your best bet is to look at the opportunities on your Dashboard. I've curated a few new ones today."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    appendMessage('AI', randomResponse);
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

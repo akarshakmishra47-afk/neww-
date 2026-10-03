@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Student Opportunity Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-content">
+            <div id="header-container"></div>
+            
+            <div class="page-content" style="max-width: 800px; margin: 0 auto; width: 100%;">
+                <div class="section-header" style="margin-top: 1rem; margin-bottom: 2rem;">
+                    <h1 class="section-title" style="font-size: 1.5rem; color: var(--brand-primary);">Notifications</h1>
+                    <button id="mark-read-btn" class="btn btn-outline" style="font-size: 0.875rem;">Mark all as read</button>
+                </div>
+                
+                <div id="notifications-list" class="card" style="padding: 0; overflow: hidden;">
+                    <!-- Notification 1 -->
+                    <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 1rem; align-items: flex-start; background: rgba(217, 120, 91, 0.05);">
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin-top: 6px;"></div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">New High Match: AI Research Internship</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Microsoft just posted an opportunity that matches 94% with your profile.</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">2 hours ago</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notification 2 -->
+                    <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 1rem; align-items: flex-start;">
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: transparent; margin-top: 6px;"></div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Application Deadline Approaching</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">The Global ML Hackathon registration closes in 3 days.</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">1 day ago</div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 3 -->
+                    <div style="padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start;">
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: transparent; margin-top: 6px;"></div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Skill Goal Updated</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">You successfully verified your Python skills to 85%.</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.components.renderSidebar('sidebar-container');
+            
+            const markReadBtn = document.getElementById('mark-read-btn');
+            const notificationsList = document.getElementById('notifications-list');
+            
+            if (markReadBtn && notificationsList) {
+                markReadBtn.addEventListener('click', () => {
+                    notificationsList.innerHTML = `
+                        <div style="padding: 3rem 1.5rem; text-align: center; color: var(--text-muted);">
+                            <svg style="width: 48px; height: 48px; margin: 0 auto 1rem auto; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                            <h3 style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">You're all caught up!</h3>
+                            <p>There are no new notifications at this time.</p>
+                        </div>
+                    `;
+                    markReadBtn.style.display = 'none';
+                    window.components.showToast('success', 'All notifications marked as read');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

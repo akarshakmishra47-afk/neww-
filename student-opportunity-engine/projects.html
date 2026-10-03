@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Student Opportunity Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--accent);
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .difficulty-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .diff-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+        .diff-dot.active {
+            background-color: var(--accent);
+        }
+
+        .project-section-title {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .why-recommended {
+            background-color: rgba(0, 86, 210, 0.05);
+            border: 1px solid rgba(0, 86, 210, 0.2);
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .why-recommended-icon {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        
+        <div class="main-content">
+            <div id="header-container"></div>
+            
+            <div class="page-content">
+                <div class="page-header flex justify-between items-center" style="margin-bottom: 1.5rem;">
+                    <div>
+                        <h1 class="page-title" style="font-size: 2rem; color: var(--text-primary);">Project Backlog</h1>
+                        <p class="page-description">Build projects tailored to your career goal to close skill gaps.</p>
+                    </div>
+                </div>
+
+                <div class="filter-bar" style="background: transparent; border: none; padding: 0; margin-bottom: 2rem; align-items: center; display: flex; gap: 1rem;">
+                    <div style="flex: 1; position: relative;">
+                        <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-secondary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <input type="text" class="form-control" id="search-input" placeholder="Search projects..." style="padding-left: 2.5rem; border-radius: var(--border-radius-sm); width: 100%;">
+                    </div>
+                    <select class="form-control" id="filter-difficulty" style="width: auto;">
+                        <option value="">Any Difficulty</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                    <button class="btn btn-primary" id="apply-filters-btn">Search</button>
+                </div>
+
+                <div id="projects-container">
+                    <!-- Skeletons / List / Error -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+</html>

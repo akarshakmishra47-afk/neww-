@@ -1,0 +1,146 @@
+:root {
+    /* Editorial Dual-Tone Design System */
+    
+    /* Natural Color Identity */
+    
+    /* Base Theme (Ivory & Sand) */
+    --primary-bg: #F5F0E8; /* Warm Ivory */
+    --card-bg: #FFFDF9; /* White */
+    --input-bg: #FFFDF9;
+    --border-color: #DED4C5; /* Muted Sand */
+    
+    /* Typography */
+    --text-primary: #17211D; /* Dark text */
+    --text-secondary: #68736C; /* Muted text */
+    --text-muted: rgba(104, 115, 108, 0.6);
+    
+    /* Colors */
+    --accent: #D9785B; /* Soft Terracotta */
+    --accent-hover: #c4664a;
+    --accent-light: rgba(217, 120, 91, 0.15);
+    
+    --brand-primary: #173F35; /* Deep Forest Green */
+    --brand-secondary: #A8B9A5; /* Sage */
+    --brand-light: rgba(168, 185, 165, 0.2);
+    
+    /* System Colors */
+    --success: #173F35; /* Forest Green for success */
+    --success-light: rgba(23, 63, 53, 0.1);
+    --warning: #D9785B;
+    --warning-light: rgba(217, 120, 91, 0.1);
+    --danger: #D9785B;
+    --danger-light: rgba(217, 120, 91, 0.1);
+    
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    /* Organic rounded corners */
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --border-radius-full: 9999px;
+    
+    /* Subtle, warm shadows */
+    --shadow-sm: 0 2px 4px rgba(23, 33, 29, 0.03);
+    --shadow-md: 0 8px 16px rgba(23, 33, 29, 0.05);
+    --shadow-lg: 0 16px 32px rgba(23, 33, 29, 0.08);
+    
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+
+/* Global Layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--primary-bg);
+}
+
+.page-content {
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Utilities */
+.hidden { display: none !important; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.w-full { width: 100%; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.text-center { text-align: center; }
